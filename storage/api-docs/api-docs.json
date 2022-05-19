@@ -1,0 +1,271 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Book Library",
+        "description": "Book Library for Back End Test",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/book/list": {
+            "get": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Get list of books",
+                "description": "Returns list of books",
+                "operationId": "783d8df9826772d51cebf2e2903ea466",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search by name or book code",
+                        "required": false,
+                        "schema": {
+                            "type": "text"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/book/borrow": {
+            "post": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Borrow book",
+                "description": "user borrow book",
+                "operationId": "b0cf35ed60f049c1ff9db7648393e34b",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "book_code",
+                                    "user_id"
+                                ],
+                                "properties": {
+                                    "book_code": {
+                                        "type": "string"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/book/return": {
+            "put": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Return book",
+                "description": "return book that borrowing",
+                "operationId": "9314d2e61b20068d6f046125eb35d624",
+                "parameters": [
+                    {
+                        "name": "book_code",
+                        "in": "query",
+                        "description": "Search by name or book code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "Search by name or book code",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/book/borrow/history": {
+            "get": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Get list of hisroty user that borrow book",
+                "description": "Returns list of user borrow ",
+                "operationId": "f7dd2c495f609995823deeee807c0b46",
+                "parameters": [
+                    {
+                        "name": "code_book",
+                        "in": "query",
+                        "description": "Code Book for see history",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/list": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get list of users",
+                "description": "Returns list of users",
+                "operationId": "c704d775b8ea3a19f36a88996776262c",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search by id or name",
+                        "required": false,
+                        "schema": {
+                            "type": "text"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/list/borrowing": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get list of Book that user borrowing",
+                "description": "Returns list of Book that user borrowing",
+                "operationId": "70a4e5dcf777673b28b412d8a3f003af",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/borrow/history": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get list Book Borrow History of user",
+                "description": "Returns list of Book borrow history that user borrow",
+                "operationId": "8f2295d09435814afbb6eee6538ddfed",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
